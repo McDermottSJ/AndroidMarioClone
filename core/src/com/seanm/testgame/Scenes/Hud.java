@@ -23,6 +23,7 @@ public class Hud {
     private float timeCount;
     private Integer score;
 
+    //text labels from the badlogic package
     Label countdownLabel;
     Label scoreLabel;
     Label timeLabel;
@@ -34,13 +35,17 @@ public class Hud {
         worldTimer = 300;
         timeCount = 0;
         score = 0;
+
+        //this prevents it from moving with the camera
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
+        //widgets get put on the table
         Table table = new Table();
         table.top();
         table.setFillParent(true);
 
+        //setup of the labels
         countdownLabel =  new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel =  new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -51,11 +56,11 @@ public class Hud {
         table.add(marioLabel).expandX().padTop(10);
         table.add(worldLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
-        table.row();
+        table.row();//adds a new row, everything added after is on that row
         table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
         table.add(countdownLabel).expandX();
 
-        stage.addActor(table);
+        stage.addActor(table);//adds table to the scene
     }
 }
